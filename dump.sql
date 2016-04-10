@@ -16,36 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `attribute_category`
---
-
-DROP TABLE IF EXISTS `attribute_category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `attribute_category` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `attribute_id` int(10) unsigned NOT NULL,
-  `category_id` int(10) unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `attribute_category_attribute_id_index` (`attribute_id`),
-  KEY `attribute_category_category_id_index` (`category_id`),
-  CONSTRAINT `attribute_category_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `attributes` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `attribute_category_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `attribute_category`
---
-
-LOCK TABLES `attribute_category` WRITE;
-/*!40000 ALTER TABLE `attribute_category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attribute_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `attributes`
 --
 
@@ -85,7 +55,7 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,8 +64,39 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (35,'Accumulators','2016-04-10 16:26:13','2016-04-10 16:26:13'),(36,'Engines','2016-04-10 16:26:13','2016-04-10 16:26:13');
+INSERT INTO `categories` VALUES (13,'Accumulators','2016-04-10 18:06:47','2016-04-10 18:06:47'),(14,'Engines','2016-04-10 18:06:48','2016-04-10 18:06:48');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `category_attribute`
+--
+
+DROP TABLE IF EXISTS `category_attribute`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category_attribute` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(10) unsigned NOT NULL,
+  `attribute_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_attribute_category_id_index` (`category_id`),
+  KEY `category_attribute_attribute_id_index` (`attribute_id`),
+  CONSTRAINT `category_attribute_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attributes` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `category_attribute_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category_attribute`
+--
+
+LOCK TABLES `category_attribute` WRITE;
+/*!40000 ALTER TABLE `category_attribute` DISABLE KEYS */;
+INSERT INTO `category_attribute` VALUES (11,13,25,NULL,NULL),(12,13,27,NULL,NULL),(13,13,28,NULL,NULL),(14,14,26,NULL,NULL),(15,14,27,NULL,NULL),(16,14,28,NULL,NULL);
+/*!40000 ALTER TABLE `category_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -114,7 +115,7 @@ CREATE TABLE `eav_attribute_options` (
   PRIMARY KEY (`id`),
   KEY `eav_attribute_options_attribute_id_foreign` (`attribute_id`),
   CONSTRAINT `eav_attribute_options_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attributes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `eav_attribute_options` (
 
 LOCK TABLES `eav_attribute_options` WRITE;
 /*!40000 ALTER TABLE `eav_attribute_options` DISABLE KEYS */;
-INSERT INTO `eav_attribute_options` VALUES (124,88,'Sparko','2016-04-10 16:26:14','2016-04-10 16:26:14'),(125,88,'Bosch','2016-04-10 16:26:14','2016-04-10 16:26:14'),(126,88,'Boge','2016-04-10 16:26:14','2016-04-10 16:26:14'),(127,89,'BMW X5','2016-04-10 16:26:15','2016-04-10 16:26:15'),(128,89,'Toyota Corolla','2016-04-10 16:26:15','2016-04-10 16:26:15'),(129,89,'Wolkswagen Passat','2016-04-10 16:26:15','2016-04-10 16:26:15'),(130,89,'Mazda Z5','2016-04-10 16:26:15','2016-04-10 16:26:15'),(131,89,'Nissan Kashkai','2016-04-10 16:26:15','2016-04-10 16:26:15');
+INSERT INTO `eav_attribute_options` VALUES (49,27,'Sparko','2016-04-10 18:06:50','2016-04-10 18:06:50'),(50,27,'Bosch','2016-04-10 18:06:50','2016-04-10 18:06:50'),(51,27,'Boge','2016-04-10 18:06:50','2016-04-10 18:06:50'),(52,28,'BMW X5','2016-04-10 18:06:50','2016-04-10 18:06:50'),(53,28,'Toyota Corolla','2016-04-10 18:06:50','2016-04-10 18:06:50'),(54,28,'Wolkswagen Passat','2016-04-10 18:06:50','2016-04-10 18:06:50'),(55,28,'Mazda Z5','2016-04-10 18:06:50','2016-04-10 18:06:50'),(56,28,'Nissan Kashkai','2016-04-10 18:06:50','2016-04-10 18:06:50');
 /*!40000 ALTER TABLE `eav_attribute_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +144,7 @@ CREATE TABLE `eav_attributes` (
   `collection` tinyint(1) NOT NULL DEFAULT '0',
   `default_value` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +153,7 @@ CREATE TABLE `eav_attributes` (
 
 LOCK TABLES `eav_attributes` WRITE;
 /*!40000 ALTER TABLE `eav_attributes` DISABLE KEYS */;
-INSERT INTO `eav_attributes` VALUES (86,'capacity','Capacity, amper*hours','Devio\\Eavquent\\Value\\Data\\Integer','App\\Product',0,NULL),(87,'cylinder_count','Cylinders count','Devio\\Eavquent\\Value\\Data\\Integer','App\\Product',0,NULL),(88,'manufacturer','Manufacturer','App\\Eav\\Value\\Data\\Option','App\\Product',0,NULL),(89,'compatible_cars','Compatible with cars','App\\Eav\\Value\\Data\\Option','App\\Product',1,NULL);
+INSERT INTO `eav_attributes` VALUES (25,'capacity','Capacity, amper*hours','Devio\\Eavquent\\Value\\Data\\Integer','App\\Product',0,NULL),(26,'cylinder_count','Cylinders count','Devio\\Eavquent\\Value\\Data\\Integer','App\\Product',0,NULL),(27,'manufacturer','Manufacturer','App\\Eav\\Value\\Data\\Option','App\\Product',0,NULL),(28,'compatible_cars','Compatible with cars','App\\Eav\\Value\\Data\\Option','App\\Product',1,NULL);
 /*!40000 ALTER TABLE `eav_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +220,7 @@ CREATE TABLE `eav_values_integer` (
   `attribute_id` int(10) unsigned NOT NULL,
   `entity_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +229,7 @@ CREATE TABLE `eav_values_integer` (
 
 LOCK TABLES `eav_values_integer` WRITE;
 /*!40000 ALTER TABLE `eav_values_integer` DISABLE KEYS */;
-INSERT INTO `eav_values_integer` VALUES (17,1200,86,25),(18,2200,86,26),(19,4,87,27),(20,6,87,28);
+INSERT INTO `eav_values_integer` VALUES (5,1200,25,5),(6,2200,25,6),(7,4,26,7),(8,6,26,8);
 /*!40000 ALTER TABLE `eav_values_integer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +246,7 @@ CREATE TABLE `eav_values_option` (
   `attribute_id` int(10) unsigned NOT NULL,
   `entity_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +255,7 @@ CREATE TABLE `eav_values_option` (
 
 LOCK TABLES `eav_values_option` WRITE;
 /*!40000 ALTER TABLE `eav_values_option` DISABLE KEYS */;
-INSERT INTO `eav_values_option` VALUES (70,124,88,25),(71,127,89,25),(72,128,89,25),(73,125,88,26),(74,128,89,26),(75,129,89,26),(76,124,88,27),(77,129,89,27),(78,130,89,27),(79,126,88,28),(80,130,89,28),(81,131,89,28);
+INSERT INTO `eav_values_option` VALUES (13,49,27,5),(14,52,28,5),(15,53,28,5),(16,50,27,6),(17,53,28,6),(18,54,28,6),(19,49,27,7),(20,54,28,7),(21,55,28,7),(22,51,27,8),(23,55,28,8),(24,56,28,8);
 /*!40000 ALTER TABLE `eav_values_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,7 +446,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `products_category_id_foreign` (`category_id`),
   CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +455,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (25,35,'accumulator1','Cool Accumulator 1',101,'accumulator1 description',11,0.00,'2016-04-10 16:26:15','2016-04-10 16:26:15'),(26,35,'accumulator2','Cool Accumulator 2',102,'accumulator2 description',12,0.00,'2016-04-10 16:26:15','2016-04-10 16:26:15'),(27,36,'engine1','Cool Engine 1',201,'engine1 description',21,0.00,'2016-04-10 16:26:15','2016-04-10 16:26:15'),(28,36,'engine2','Cool Engine 2',202,'engine2 description',22,0.00,'2016-04-10 16:26:16','2016-04-10 16:26:16');
+INSERT INTO `products` VALUES (5,13,'accumulator1','Cool Accumulator 1',101,'accumulator1 description',11,0.00,'2016-04-10 18:06:51','2016-04-10 18:06:51'),(6,13,'accumulator2','Cool Accumulator 2',102,'accumulator2 description',12,0.00,'2016-04-10 18:06:51','2016-04-10 18:06:51'),(7,14,'engine1','Cool Engine 1',201,'engine1 description',21,0.00,'2016-04-10 18:06:51','2016-04-10 18:06:51'),(8,14,'engine2','Cool Engine 2',202,'engine2 description',22,0.00,'2016-04-10 18:06:51','2016-04-10 18:06:51');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,4 +497,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10 23:03:16
+-- Dump completed on 2016-04-11  0:09:40
