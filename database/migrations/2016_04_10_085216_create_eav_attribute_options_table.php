@@ -16,6 +16,7 @@ class CreateEavAttributeOptionsTable extends Migration
             $table->increments('id');
             $table->integer('attribute_id')->unsigned();
             $table->string('label');
+            $table->timestamps();
 
             $table->foreign('attribute_id')
                   ->references('id')

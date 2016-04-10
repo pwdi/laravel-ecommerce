@@ -150,6 +150,35 @@ INSERT INTO `categories` VALUES (1,'cat1',NULL,NULL);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `eav_attribute_options`
+--
+
+DROP TABLE IF EXISTS `eav_attribute_options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `eav_attribute_options` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `attribute_id` int(10) unsigned NOT NULL,
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `eav_attribute_options_attribute_id_foreign` (`attribute_id`),
+  CONSTRAINT `eav_attribute_options_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attributes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eav_attribute_options`
+--
+
+LOCK TABLES `eav_attribute_options` WRITE;
+/*!40000 ALTER TABLE `eav_attribute_options` DISABLE KEYS */;
+INSERT INTO `eav_attribute_options` VALUES (1,6,'Audi C8',NULL,NULL),(2,6,'BMW X5',NULL,NULL),(3,7,'Company 1',NULL,NULL),(4,7,'Company 2',NULL,NULL),(5,6,'Toyota','2016-04-10 10:08:06','2016-04-10 10:08:06');
+/*!40000 ALTER TABLE `eav_attribute_options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `eav_attributes`
 --
 
@@ -165,7 +194,7 @@ CREATE TABLE `eav_attributes` (
   `collection` tinyint(1) NOT NULL DEFAULT '0',
   `default_value` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +203,7 @@ CREATE TABLE `eav_attributes` (
 
 LOCK TABLES `eav_attributes` WRITE;
 /*!40000 ALTER TABLE `eav_attributes` DISABLE KEYS */;
-INSERT INTO `eav_attributes` VALUES (1,'city','City','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',0,NULL),(2,'colors','Colors','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',1,NULL),(3,'address','Address','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',0,NULL),(4,'sizes','Sizes','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',1,NULL),(6,'cars','Cars','App\\Eav\\Value\\Data\\Option','App\\Product',1,NULL);
+INSERT INTO `eav_attributes` VALUES (1,'city','City','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',0,NULL),(2,'colors','Colors','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',1,NULL),(3,'address','Address','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',0,NULL),(4,'sizes','Sizes','Devio\\Eavquent\\Value\\Data\\Varchar','App\\Product',1,NULL),(6,'cars','Cars','App\\Eav\\Value\\Data\\Option','App\\Product',1,NULL),(7,'manufacturer','manufacturer','App\\Eav\\Value\\Data\\Option','App\\Product',0,NULL);
 /*!40000 ALTER TABLE `eav_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +296,7 @@ CREATE TABLE `eav_values_option` (
   `attribute_id` int(10) unsigned NOT NULL,
   `entity_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +305,7 @@ CREATE TABLE `eav_values_option` (
 
 LOCK TABLES `eav_values_option` WRITE;
 /*!40000 ALTER TABLE `eav_values_option` DISABLE KEYS */;
-INSERT INTO `eav_values_option` VALUES (1,1,6,3),(2,2,6,3),(3,3,6,3);
+INSERT INTO `eav_values_option` VALUES (4,3,7,3),(35,1,6,3),(36,2,6,3),(37,5,6,3);
 /*!40000 ALTER TABLE `eav_values_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +354,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1),('2016_04_09_222036_create_main_tables',2),('2015_06_18_000000_create_eav_attributes_table',3),('2016_02_29_000000_create_eav_values_boolean_table',3),('2016_02_29_000000_create_eav_values_datetime_table',3),('2016_02_29_000000_create_eav_values_integer_table',3),('2016_02_29_000000_create_eav_values_varchar_table',3),('2016_04_09_231410_create_brands_and_cars_tables',3),('2016_04_10_083325_create_eav_values_option_table',4);
+INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1),('2016_04_09_222036_create_main_tables',2),('2015_06_18_000000_create_eav_attributes_table',3),('2016_02_29_000000_create_eav_values_boolean_table',3),('2016_02_29_000000_create_eav_values_datetime_table',3),('2016_02_29_000000_create_eav_values_integer_table',3),('2016_02_29_000000_create_eav_values_varchar_table',3),('2016_04_09_231410_create_brands_and_cars_tables',3),('2016_04_10_083325_create_eav_values_option_table',4),('2016_04_10_085216_create_eav_attribute_options_table',5);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10 11:36:44
+-- Dump completed on 2016-04-10 13:28:17

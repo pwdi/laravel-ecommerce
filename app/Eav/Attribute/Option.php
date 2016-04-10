@@ -11,4 +11,6 @@ class Option extends Model
     protected $fillable = [
         'label',
     ];
+
+    /* TODO: relation with EAV attribute*/
 }

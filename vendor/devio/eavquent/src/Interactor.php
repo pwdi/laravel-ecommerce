@@ -99,7 +99,25 @@ class Interactor
         // a collection with pairs of id and value content. Otherwise we'll
         // just return the single model value content as a plain result.
         if ($this->getAttribute($key)->isCollection()) {
-            return $value->pluck('content');
+            /* hack begin*/
+                $collection = $value->pluck('content');
+                $dataModel = $this->getAttribute($key)->model;
+
+                if (($dataModel == 'App\Eav\Value\Data\Option') && !$collection->isEmpty()) {
+                    $hacked_collection = \Illuminate\Support\Collection::make([]);
+
+                    foreach ($value->pluck('id') as $option_id) {
+                        $hacked_collection[] = $dataModel::find($option_id)->getContent();
+                    }
+                    return $hacked_collection;
+                }
+                else {
+                    return $collection;
+                }
+            /* hack end */
+
+            // original code
+            // return $value->pluck('content');
         }
 
         return ! is_null($value) ? $value->getContent() : null;
