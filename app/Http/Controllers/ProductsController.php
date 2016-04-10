@@ -36,6 +36,10 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+
+        // eager load product attributes
+        $product->with('eav');
+
         return view('products.show', compact('product'));
     }
 }
