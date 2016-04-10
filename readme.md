@@ -31,6 +31,7 @@ php artisan vendor:publish --provider="Devio\Eavquent\EavquentServiceProvider"
 php artisan migrate
 php artisan db:seed --class=MainSeeder
 ```
+If you have problems with migrations, create DB from dump.sql (file in project folder).
 
 ### Step 5
 ```shell
@@ -38,4 +39,6 @@ php artisan serve
 ```
 
 Now you should see site at http://localhost:8000
+
+
 
