@@ -104,12 +104,21 @@ class ProductsController extends Controller
         //     'collection'    => true
         // ]);
 
+
+        // select-type attribute
+        // $manufacturerAttribute = Attribute::create([
+        //     'code'          => 'manufacturer',
+        //     'label'         => 'manufacturer',
+        //     'model'         => Option::class,
+        //     'entity'        => Product::class,
+        //     'default_value' => null,
+        //     'collection'    => false
+        // ]);
+
         $product = Product::first();
-        $product->{'cars'} = [1,2,3];
-        // $product->city = 'Kharkiv';
+        $product->{'manufacturer'} = 3;
         $product->save();
-        var_dump($product->{'cars'});
-        // var_dump($product->colors);
+        var_dump($product->{'manufacturer'}->label);
         return view('products.index', ['products' => [$product]]);
     }
 
