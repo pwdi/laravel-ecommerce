@@ -11,7 +11,8 @@ use App\Product;
 
 use Devio\Eavquent\Value\Data\Varchar;
 use Devio\Eavquent\Attribute\Attribute;
-use Faker\Factory;
+
+use App\Eav\Value\Data\Option;
 
 class ProductsController extends Controller
 {
@@ -94,21 +95,21 @@ class ProductsController extends Controller
         // ]);
 
         // // Collection attribute without any value
-        // $sizesAttribute = Attribute::create([
-        //     'code'          => 'sizes',
-        //     'label'         => 'Sizes',
-        //     'model'         => Varchar::class,
+        // $carsAttribute = Attribute::create([
+        //     'code'          => 'cars',
+        //     'label'         => 'Cars',
+        //     'model'         => Option::class,
         //     'entity'        => Product::class,
         //     'default_value' => null,
         //     'collection'    => true
         // ]);
 
         $product = Product::first();
-        // $product->colors = ['foo', 'bar'];
+        $product->{'cars'} = [1,2,3];
         // $product->city = 'Kharkiv';
         $product->save();
-        var_dump($product->city);
-        var_dump($product->colors);
+        var_dump($product->{'cars'});
+        // var_dump($product->colors);
         return view('products.index', ['products' => [$product]]);
     }
 
