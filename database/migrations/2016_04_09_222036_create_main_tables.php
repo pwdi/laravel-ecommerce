@@ -26,12 +26,12 @@ class CreateMainTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attribute_category', function (Blueprint $table) {
+        Schema::create('category_attribute', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('attribute_id')->unsigned()->index();
-            $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('attribute_id')->unsigned()->index();
+            $table->foreign('attribute_id')->references('id')->on('eav_attributes')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -119,7 +119,7 @@ class CreateMainTables extends Migration
     {
         Schema::drop('categories');
         Schema::drop('attributes');
-        Schema::drop('attribute_category');
+        Schema::drop('category_attribute');
         Schema::drop('products');
         Schema::drop('product_attribute_int');
         Schema::drop('product_attribute_varchar');

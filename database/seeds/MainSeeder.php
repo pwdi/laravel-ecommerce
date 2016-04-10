@@ -106,6 +106,15 @@ class MainSeeder extends Seeder
                 $car_options[] = $opt;
             }
 
+        /* Category-attribute relations */
+            $category_accumulators->attributes()->save($capacityAttribute);
+            $category_accumulators->attributes()->save($manufacturerAttribute);
+            $category_accumulators->attributes()->save($carsAttribute);
+
+            $category_engines->attributes()->save($cylindersCountAttribute);
+            $category_engines->attributes()->save($manufacturerAttribute);
+            $category_engines->attributes()->save($carsAttribute);
+
         /* Products */
             Product::getQuery()->delete();
 
