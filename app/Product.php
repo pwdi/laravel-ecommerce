@@ -25,8 +25,8 @@ class Product extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function getCategoryAttributes()
+    public function category_attributes()
     {
-        return $this->category()->first()->attributes()->get();
+        return $this->category()->first()->attributes();
     }
 }
