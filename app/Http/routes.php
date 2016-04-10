@@ -17,4 +17,5 @@ Event::listen('illuminate.query', function($query)
 });
 
 Route::get('/', ['as' => 'products.index', 'uses' => 'ProductsController@index']);
-Route::get('/createDummyData', ['as' => 'products.createDummyData', 'uses' => 'ProductsController@createDummyData']);
+Route::resource('products', 'ProductsController',  ['only' => ['show']]);
+// Route::get('/createDummyData', ['as' => 'products.createDummyData', 'uses' => 'ProductsController@createDummyData']);

@@ -1,11 +1,16 @@
-<ul class="list-unstyled list-split-hr">
-    @foreach ($products as $product)
-        <li>
-            {{ $product->{'colors'} }} ${{ $product->price }}
-            <pre>{{ $product }}</pre>
-        </li>
-    @endforeach
-</ul>
-{{ var_dump(DB::getQueryLog()) }}
-<?php $renderer = \Debugbar::getJavascriptRenderer(); ?>
-<?php echo $renderer->render() ?>
+@extends('layout')
+
+@section('content')
+
+@foreach ($products as $product)
+    <div>
+        <h2><a href="{{ route('products.show', $product->id)}}"> {{ $product->name }}</a></h2>
+        <h3>${{ $product->price }}</h3>
+        <form action="#">
+            <button type="button" class="btn btn-primary">Buy</button>
+        </form>
+    </div>
+    <hr>
+@endforeach
+
+@stop

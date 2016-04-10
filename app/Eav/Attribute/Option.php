@@ -12,5 +12,4 @@ class Option extends Model
         'label',
     ];
 
-    /* TODO: relation with EAV attribute*/
 }

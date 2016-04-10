@@ -10,8 +10,6 @@ class Option extends Value
         return $this->setAttribute('content', $content);
     }
 
-    // App\Eav\Value\Data\Option::find(1)->getContent()
-
     /**
      * Get the content.
      *
