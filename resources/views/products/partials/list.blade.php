@@ -1,7 +1,3 @@
-@extends('layout')
-
-@section('content')
-
 @foreach ($products as $product)
     <div>
         <h2><a href="{{ route('products.show', $product->id)}}"> {{ $product->name }}</a></h2>
@@ -12,5 +8,3 @@
     </div>
     <hr>
 @endforeach
-
-@stop

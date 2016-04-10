@@ -11,11 +11,11 @@
 |
 */
 
-Event::listen('illuminate.query', function($query)
-{
-    var_dump($query);
-});
+// Event::listen('illuminate.query', function($query)
+// {
+//     var_dump($query);
+// });
 
-Route::get('/', ['as' => 'products.index', 'uses' => 'ProductsController@index']);
-Route::resource('products', 'ProductsController',  ['only' => ['show']]);
-// Route::get('/createDummyData', ['as' => 'products.createDummyData', 'uses' => 'ProductsController@createDummyData']);
+Route::get('/', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
+Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
+Route::resource('products', 'ProductsController', ['only' => ['show']]);

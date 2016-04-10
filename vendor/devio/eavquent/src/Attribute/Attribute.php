@@ -87,4 +87,12 @@ class Attribute extends Model
         return (bool) $this->getAttribute('collection');
     }
 
+    /* TODO: remove this code from vendor dir */
+    // !!! options method should NOT be called for attributes with model != '...\Option' !!!
+    public function options()
+    {
+        return ($this->model == 'App\Eav\Value\Data\Option')
+               ? $this->hasMany('App\Eav\Attribute\Option')
+               : null;
+    }
 }

@@ -3,6 +3,14 @@
 @section('content')
 
 <div class="row">
+    <ol class="breadcrumb">
+        <li><a href="{{ route('categories.index') }}">Home</a></li>
+        <li><a href="{{ route('categories.show', $product->category->id) }}">{{ $product->category->name }}</a></li>
+        <li class="active">{{ $product->name }}</li>
+    </ol>
+</div>
+
+<div class="row">
 
     <h2>{{ $product->name }}</h2>
     <h4>${{ $product->price }}</h4>

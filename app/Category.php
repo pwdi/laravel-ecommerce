@@ -10,6 +10,11 @@ class Category extends Model
         'name',
     ];
 
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+
     // TODO: backward relation. For this, we should implement our own attribute model that extends original one
     public function attributes()
     {
