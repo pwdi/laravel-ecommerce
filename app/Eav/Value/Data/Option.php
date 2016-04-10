@@ -17,6 +17,6 @@ class Option extends Value
      */
     public function getContent()
     {
-        return $this->hasOne('App\Eav\Attribute\Option', 'id', 'content')->first();
+        return $this->belongsTo('App\Eav\Attribute\Option', 'content')->first();
     }
 }
