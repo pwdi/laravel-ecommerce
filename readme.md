@@ -1,27 +1,41 @@
-# Laravel PHP Framework
+# Laravel eCommerce site blueprint
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### Step 1
+```shell
+composer install
+```
+### Step 2
+Set DB credentials in config/database.php and create DB (DB name in set in config/database.php)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### Step 3
+Integrate EAV package with Laravel
 
-## Official Documentation
+Include the `EavquentServiceProvider` to the providers array in `config/app.php`. It will bootstrap the package for us:
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+```php
+'providers' => [
+    ...
+    Devio\Eavquent\EavquentServiceProvider::class
+    ...
+]
+```
 
-## Contributing
+Once the Service Provider is loaded, we just have to publish the package assets:
+```shell
+php artisan vendor:publish --provider="Devio\Eavquent\EavquentServiceProvider"
+```
+### Step 4
+```shell
+php artisan migrate
+php artisan db:seed --class=MainSeeder
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### Step 5
+```shell
+php artisan serve
+```
 
-## Security Vulnerabilities
+Now you should see site at http://localhost:8000
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
